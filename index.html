@@ -7,6 +7,7 @@
     <link href="style.css" rel="Stylesheet" type="text/css">
     <link href="theme/prism.css"  rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
 </head>
 <body>
     <script src="prism.js"></script>
@@ -14,13 +15,13 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">MonSite</a>
+            <a class="navbar-brand" href="#">Trames NMEA</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#accueil">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link" href="#intro">introduction</a></li>
                 <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
                 <li class="nav-item"><a class="nav-link" href="#apropos">À propos</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
@@ -32,10 +33,10 @@
     <section id="Introduction" class="hero">
         <div class="container">
             <img src="asset/image/carbon.png" alt="ntm">
-            <h1 class="display-4 fw-bold">Bienvenue sur MonSite</h1>
-            <h3>Voici les réponse des question de l'Introduction</h3>
+            <h1 class="display-4 fw-bold" id="texte_arrive">Bienvenue sur MonSite</h1>
         </div>
         <div>
+<<<<<<< HEAD
             <ul>
                 <li>L'heure UTC est l'heure de réference mondial. Elle se définit par UTC &#x2213 n, avec N qui represente le nombre d'heure de décalage avec le 
                     fuseau principale (fuseau de Londre). Par exemple UTC + 2 corréspond au fuseau auraire décaler de + 2h par rapport à Londre
@@ -50,6 +51,26 @@
                     s'exprime en degrè : <img src="images/LA_LO_earth.png" alt="">
                 </li>
             </ul>
+=======
+            <h3 id = "intro">Voici les réponse des question de l'Introduction</h3>
+
+            
+            <p> <span class = "nom">question 1:</span></p>
+            <p class ="caca">L'heure UTC est l'heure de réference mondial. Elle se définit par UTC &#x2213 n, avec N qui represente le nombre d'heure de décalage avec le 
+                    fuseau principale (fuseau de Londre). Par exemple UTC + 2 corréspond au fuseau auraire décaler de + 2h par rapport à Londre</p>
+
+            <p> <span class = "nom">question 2:</span></p>
+            <p class ="caca"> NMEA - National Marine & Electronics Association est un standard de communication pour les système GPS embarquée, Sous ce standard, toutes les données sont transmises sous la forme des caractères ASCII. Le terme de "Trame" désigne le fait que les donnée sont transmises sous formes de phrase/sentences. Chaque trame commence par le caractères $ suivie par un groupe de 2 lettres identifiant le récepteur puis de 3 letres indentifiant de la trame : ici nous verront la trame GGA pour GPS fixe et Date. Un total de 82 caractères maximum pour une trame.</p>
+
+
+            <p><span class = "nom">question 3:</span></p>
+            <p class ="caca">voici deux image representant la longitude et latitude sur le globe, à savoir que ces coordonnée s'exprime en degrè : </p>
+            <p><img id = "image" src="images/LA_LO_earth.png" alt=""></p>
+
+            
+            </p>
+
+>>>>>>> b648a457f38361200b4179df9fb2b84c0afcf44f
         </div>
     </section>
 </body>
