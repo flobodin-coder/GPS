@@ -10,7 +10,7 @@
 
 </head>
 <body>
-    <script src="prism.js"></script>
+    <script src="prism.js"></script>    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -22,21 +22,21 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="#intro">introduction</a></li>
-                <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                <li class="nav-item"><a class="nav-link" href="#apropos">À propos</a></li>
+                <li class="nav-item"><a class="nav-link" href="#Trame">pres trame</a></li>
+                <li class="nav-item"><a class="nav-link" href="#code">code python</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <section id="Introduction" class="hero">
+    <section id="intro" class="hero">
         <div class="container">
             <img src="asset/image/carbon.png" alt="ntm">
-            <h1 class="display-4 fw-bold" id="texte_arrive">Bienvenue sur MonSite</h1>
+            <h1 class="display-4 fw-bold" id="texte_arrive">TrameNMEA</h1>
         </div>
         <div>
-            <h3 id = "intro">Voici les réponse des question de l'Introduction</h3>
+            <h3 class = "intro">Voici les réponse des question de l'Introduction</h3>
 
             
             <p> <span class = "nom">question 1:</span></p>
@@ -51,10 +51,90 @@
             <p class ="caca">voici deux image representant la longitude et latitude sur le globe, à savoir que ces coordonnée s'exprime en degrè : </p>
             <p><img id = "image" src="images/LA_LO_earth.png" alt=""></p>
 
+        </section>
+
+        <section id="Trame" class="hero">
+
+            <h3 class = "intro">Présentation de la trame</h3>
+            <div style="display: flex; gap: 20px; align-items: center;">
+
+                <div style="flex: 1;">
+                    <p><span class = "nom">question 8:</span></p>
+                    <pre><code class="language-python">
+                    trame="$GPGGA,085508.375,4804.364,N,00508.820,E,1,12,3.2,M,200.2,M,,*65"
+                    </code></pre>
+                    <ul class = "GT5">
+                        <li>085508.375 : c'est l'heure</li>
+                        <li>4804.364 : c'est la latitude en degre, minutes, seconde</li>
+                        <li>N : la direction sur la rose des vents</li>
+                        <li>00508.820 : c'est la longitude en degre, minutes, seconde</li>
+                        <li>E : la direction sur la rose des vents</li>
+                        <li>1: correspond au type de positionnement du GPS</li>
+                        <li>12 : numero du satellite utilisé</li>
+                        <li>3.2 : c'est la precision au metre près</li>
+                        <li>200.2 : c'est l'altitude</li>
+                        <li>M : unite utiliser</li>
+                        <li>*65 : multiplication par 65</li>
+                    </ul>
+                </div>
+
+                <img id = "image1" src="images/NMEA.png" alt="description" style="width: 300px; height: auto;">
+                
+
+               
+
+            </div>
+
+        </section >
+
             
 
+        <section id="code" class="hero">
+            <h3 class = "intro">Présentation du code créer en python</h3>
+            
+            <pre><code class="language-python">
+                lst_champs = trame.split(",")
+
+                heure = lst_champs[1]
+                latitude_DMS = lst_champs[2]
+                latitude_S = lst_champs[2].split(".")
+
+
+                print(int(latitude_S[1])*60)
+                print(latitude_S[1])
+
+
+                longitude = lst_champs[4]
+                type_position = lst_champs[6]
+                sat = lst_champs[7]
+                Precision_horizontal = lst_champs[8]
+                altitude = lst_champs[10]
+
+                print(heure, latitude_DMS, longitude, type_position, sat, Precision_horizontal, altitude)
+
+                print ("heure émission = ",heure[0:2])
+
+                def nmea_to_decimal(latitude_DMS, longitude):
+                    degrees_lat = float(latitude_DMS[2:])
+                    minutes_lat= float(latitude_DMS[2:])
+                    degrees_lon = int(longitude[:3])
+                    minutes_lon = float(longitude[3:])
+                    
+                    decimal_lat = degrees_lat + (minutes_lat)/60
+                    decimal_lon = degrees_lon + (minutes_lon)/60
+                        
+                    return decimal_lat, decimal_lon
+
+                print(nmea_to_decimal(latitude_DMS, longitude), "oui")
+
+            </code></pre>
+
+
+
+
+        </section>
 
         </div>
-    </section>
+    
 </body>
 </html>

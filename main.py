@@ -1,3 +1,4 @@
+import folium as fm
 trame="$GPGGA,085508.375,4804.364,N,00508.820,E,1,12,3.2,M,200.2,M,,*65"
 
 lst_champs = trame.split(",")
@@ -29,8 +30,12 @@ def nmea_to_decimal(latitude_DMS, longitude):
     
     decimal_lat = degrees_lat + (minutes_lat)/60
     decimal_lon = degrees_lon + (minutes_lon)/60
-        
+
     return decimal_lat, decimal_lon
 
 print(nmea_to_decimal(latitude_DMS, longitude), "oui")
+
+m = fm.Map(location=(nmea_to_decimal(latitude_DMS, longitude)[0], nmea_to_decimal(latitude_DMS, longitude)[1]),zoom_start=5, tiles="cartodb positron")
+m.save("footprint.html")
+open("footprint.html", "r").read()
 
