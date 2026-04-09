@@ -1,41 +1,31 @@
-import folium as fm
-trame="$GPGGA,085508.375,4804.364,N,00508.820,E,1,12,3.2,M,200.2,M,,*65"
+import folium
 
-lst_champs = trame.split(",")
+trame = "$GPGGA,085508.375,4804.364,N,00508.820,E,1,12,3.2,M,200.2,M,,*65"
 
-heure = lst_champs[1]
-latitude_DMS = lst_champs[2]
-latitude_S = lst_champs[2].split(".")
+c = trame.split(",")
 
+# conversion en degrés décimaux
+lat = int(c[2][:2]) + float(c[2][2:]) / 60
+if c[3] == "S":
+    lat = -lat
 
-print(int(latitude_S[1])*60)
-print(latitude_S[1])
+lon = int(c[4][:3]) + float(c[4][3:]) / 60
+if c[5] == "W":
+    lon = -lon
 
+precision = float(c[8])
 
-longitude = lst_champs[4]
-type_position = lst_champs[6]
-sat = lst_champs[7]
-Precision_horizontal = lst_champs[8]
-altitude = lst_champs[10]
+# carte
+m = folium.Map(location=[lat, lon], zoom_start=15)
 
-print(heure, latitude_DMS, longitude, type_position, sat, Precision_horizontal, altitude)
+# markeur
+folium.Marker([lat, lon]).add_to(m)
 
-print ("heure émission = ",heure[0:2])
+# cercle de pressision
+folium.Circle(
+    location=[lat, lon],
+    radius=precision,
+    fill=True
+).add_to(m)
 
-def nmea_to_decimal(latitude_DMS, longitude):
-    degrees_lat = float(latitude_DMS[2:])
-    minutes_lat= float(latitude_DMS[2:])
-    degrees_lon = int(longitude[:3])
-    minutes_lon = float(longitude[3:])
-    
-    decimal_lat = degrees_lat + (minutes_lat)/60
-    decimal_lon = degrees_lon + (minutes_lon)/60
-
-    return decimal_lat, decimal_lon
-
-print(nmea_to_decimal(latitude_DMS, longitude), "oui")
-
-m = fm.Map(location=(nmea_to_decimal(latitude_DMS, longitude)[0], nmea_to_decimal(latitude_DMS, longitude)[1]),zoom_start=5, tiles="cartodb positron")
-m.save("footprint.html")
-open("footprint.html", "r").read()
-
+m.save("carte.html")
